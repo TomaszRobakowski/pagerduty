@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class MainComponent implements OnInit {
+  displayDialog: boolean;
   first: number;
   pokemonsPerPage: number;
   pokemons: any;
@@ -61,7 +62,6 @@ export class MainComponent implements OnInit {
   }
 
   onSearch() {
-    this.getPokemon(this.pokemonId);
 
     this.rest.getPokemonsList(this.pokemons.count, 0).subscribe((data: {}) => {
       var val = 'https://pokeapi.co/api/v2/pokemon/'+this.pokemonId+'/'
@@ -75,6 +75,8 @@ export class MainComponent implements OnInit {
         this.activePage = Math.floor(indx/this.pokemonsPerPage);
         this.selectedIndex = indx - Math.floor(indx / this.pokemonsPerPage) * this.pokemonsPerPage;
         this.first = this.activePage * this.pokemonsPerPage;
+      } else {
+        this.displayDialog = true;
       }
       this.getPList (this.activePage * this.pokemonsPerPage, false);
 
@@ -125,6 +127,8 @@ export class MainComponent implements OnInit {
     this.selectedPokemon = null;
     this.selectedRow = null;
     this.showPokemon = false;
+    this.allPokemons = new Array(0);
+    this.displayDialog = false;
   }
-  
+
 }
