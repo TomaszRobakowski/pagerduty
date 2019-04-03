@@ -1,0 +1,64 @@
+<div *ngIf="pokemons" style= "width: 100%;">
+
+        <div class="ui-g" *ngIf="selectedPokemon" >
+                <div (click) = "onNext(-1)" class="ui-g-1 navibtn" > <i class="pi pi-caret-left"></i> </div>
+                <div class="ui-g-1" >
+                    <img *ngIf="selectedPokemon.sprites.front_default" 
+                         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{selectedPokemon.id}}.png">
+                </div>
+                <div class="ui-g-9"><h3 class="first">{{selectedPokemon.name}} </h3>
+                    <div class="ui-g-2"><h4 class="first">base stat</h4></div>
+                    <div class="ui-g-2"><h4 class="first">effort</h4> </div> 
+                    <div class="ui-g-3"><h4 class="first">stat name</h4> </div>
+                    <div class="ui-g-5"><h4 class="first">stat URL</h4></div>
+                     <div *ngFor="let stat of selectedPokemon.stats">
+                        <div class="ui-g-2"> {{stat.base_stat}} </div>
+                        <div class="ui-g-2"> {{stat.effort}} </div> 
+                        <div class="ui-g-3"> {{stat.stat.name}} </div>
+                        <div class="ui-g-5"> {{stat.stat.url}}</div>
+                     </div>
+                </div>
+                <div (click) = "onNext(1)" class="ui-g-1 navibtn" > <i class="pi pi-caret-right" style="float: right;"> </i></div>
+        </div>
+        
+
+
+    <p-table [value]="pokemons.results" 
+             selectionMode="single"
+             [(selection)]="selectedRow"
+             dataKey="name"
+             (onRowSelect)="onRowSelect($event['data'].name, $event.index )">
+        
+        <ng-template pTemplate="caption">
+            <div>
+                <i class="fa fa-search" style="margin:10px 10px 20px 10px"></i>
+                <input [(ngModel)]="pokemonId"  
+                    type="text" 
+                    placeholder="pokemon id"  
+                    style="width:80%"> <button class="btn btn-sm btn-primary" (click) = "onSearch()">szukaj</button>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr >
+                <th>Pokemon</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-pokemon let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="pokemon" [pSelectableRowIndex]="rowIndex">
+                <td>{{pokemon.name}}</td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+    <p-paginator #paginator
+                [(first)]="first"
+                [rows]="10" 
+                [totalRecords]="pokemons.count"
+                pageLinkSize="10"
+                (onPageChange)=(onPageChg($event))>
+    </p-paginator>
+
+</div>
