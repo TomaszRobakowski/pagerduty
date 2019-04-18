@@ -9,9 +9,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 
 import { TableModule } from 'primeng/table';
-import { PaginatorModule } from 'primeng/paginator';
-import { PanelModule } from 'primeng/panel';
-import { DialogModule } from 'primeng/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,9 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     HttpClientModule,
     TableModule,
-    PaginatorModule,
-    PanelModule,
-    DialogModule,
+
     AppRoutingModule,
     BrowserAnimationsModule
     ],
