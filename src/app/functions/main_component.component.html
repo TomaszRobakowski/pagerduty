@@ -9,20 +9,21 @@
 
         <ng-template pTemplate="header">
             <tr >
-                <th><h3>List of users</h3></th>
+                <th><h3>User</h3></th>
+                <th><h3>Notifications</h3></th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
             <tr [pSelectableRow]="user" [pSelectableRowIndex]="rowIndex">
-                <td><h4>{{user.name}}</h4>
-                    <table>
-                        <tr>
-                            <td *ngFor="let rule of user.notification_rules;let i = index">
-                                Delay {{rule.summary}} 
-                            </td>
-                        </tr>
-                    </table>   
+                <td>
+                    <h4>{{user.name}}</h4>
+                </td>
+                <td>
+                    <div *ngFor="let rule of user.notification_rules;let i = index" >
+                        <span *ngIf="i == 0">Delay {{rule.summary}}</span>
+                        <span *ngIf="i > 0 && rule.summary != user.notification_rules[i-1].summary">Delay {{rule.summary}} </span>
+                    </div>
                 </td>
             </tr>
 

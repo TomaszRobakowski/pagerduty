@@ -30,7 +30,7 @@ Access Level	Full access
   getPagerEndpoint(_cmd){ 
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     headers = headers.set('Accept', 'application/vnd.pagerduty+json;version=2');
-    headers = headers.set('Authorization', 'Token token=5qyzwkFu8b32EvtzmFMq');
+    headers = headers.set('Authorization', 'Token token=VnJThFnBzzBk-zt1yczw');
     let uri = endpoint+_cmd;
     return this.http.get(uri, { headers: headers }).pipe(map(this.extractData));
     //return this.http.get(pager2, { headers: headers }).pipe(map(this.extractData));
