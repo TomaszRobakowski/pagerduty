@@ -14,7 +14,7 @@ more: number;
 
   constructor(public rest:RestService, private route: ActivatedRoute,) {
     this.more = 0;
-    this.isMore = false;
+    //  this.isMore = false;
   }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ more: number;
   readEndPoint(_call: string) {
     this.rest.getPagerEndpoint(_call).subscribe( (res_data) => {
       // ('pager:', res_data);
-      this.usersList = res_data.users;
+      this.usersList = res_data['users'];
     });
   }
 
